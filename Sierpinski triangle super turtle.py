@@ -1,6 +1,5 @@
 from matplotlib import *
 import matplotlib.pyplot as plt
-from functools import lru_cache
 
 """
 Creates the Sierpinski triangle usingthe basic 
@@ -12,7 +11,7 @@ COLORMAP = [ "#CCCCFF","#9999FF", "#6666FF", "#3333FF",
 #Blue palette
 COLORMAP.reverse()
 
-lev=int(input())
+lev=int(input("введите количество уровней в треугольнике: "))
 dots = []
 
 def mouse_event(event): # click three times
@@ -29,13 +28,10 @@ cid = fig.canvas.mpl_connect('button_press_event', mouse_event)
 
 curr_level=0
 
-@lru_cache()
 def getMid(p1,p2):
     return ( (p1[0]+p2[0]) / 2, (p1[1] + p2[1]) / 2)
 
-
 def serpinsky(points, levels):
-    
     draw (points, COLORMAP[levels%9])
     if levels > 0:
         serpinsky([points[0],
@@ -58,7 +54,6 @@ def draw(points, colors):
     plt.plot(x, y,color=colors,  linewidth = '0.1' )
     plt.fill(x, y, color=colors)
 
-@lru_cache()
 def start():
     serpinsky(dots, lev)
 

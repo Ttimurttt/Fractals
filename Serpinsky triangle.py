@@ -1,4 +1,5 @@
 from turtle import *
+import time as t
 
 Screen().colormode(255)
 
@@ -8,7 +9,7 @@ COLORMAP = [(204, 204, 255), (153, 153, 255), (102, 102, 255), (51, 51, 255),
 COLORMAP.reverse()
 
 speed(0)
-lev=int(input())
+lev=int(input("введите количество уровней в треугольнике: "))
 up()
 dots = []
 
@@ -18,7 +19,10 @@ def position(x, y):
     if len(dots) == 3:
         print(dots)
         onscreenclick(None)
+        start_t = t.time()
         start()
+        end_t = t.time()
+        print(end_t-start_t)
 
 tracer(0, 0)
 width(1)

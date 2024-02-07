@@ -2,8 +2,6 @@ import matplotlib.pyplot as plt
 import numpy as np
 import time
 
-
-
 def calculate_next_point1(point):
     return .0, 0.16*point[1]
 
@@ -21,19 +19,19 @@ def main(i):
     ax = plt.axes()
     ax.set_facecolor("black")
     functions = [calculate_next_point1, calculate_next_point2, calculate_next_point3, calculate_next_point4]
-    for _ in range(i):
+    for iter in range(i):
         function = np.random.choice(functions, p=[0.01, 0.85, 0.07, 0.07])
         x, y = function ([x, y])
-        dotsx.append(x)
-        dotsy.append(y)
+        dotsx[iter] = x
+        dotsy[iter] = y
 
-dotsx = ([10, 10, -10, -10])
-dotsy = ([10, -10, -10, 10])
-
+i = int(input("Введите количество итераций: "))
 start = time.time()
-main(100000)
+dotsx = np.zeros(i)
+dotsy = np.zeros(i)
+main(i)
 
-plt.scatter(dotsx, dotsy, s = 0.1, color = "white")
+plt.scatter(dotsx, dotsy, s = 1, color = "white")
 end = time.time()
 print(end - start)
 plt.show()
